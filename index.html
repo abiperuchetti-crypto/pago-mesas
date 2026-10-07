@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzería Don Peperone - Pago de Mesa</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #fcf8f2; color: #333; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 420px; text-align: center; margin: 20px; }
+        h1 { color: #d35400; font-size: 24px; margin-bottom: 5px; }
+        .sub { font-size: 14px; color: #7f8c8d; margin-bottom: 15px; }
+        .mesa-tag { background: #f5b041; color: #fff; padding: 5px 15px; border-radius: 20px; font-weight: bold; display: inline-block; margin-bottom: 15px; }
+        .detalle { text-align: left; background: #fdfefe; padding: 12px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #ebedef; max-height: 200px; overflow-y: auto; }
+        .detalle p { display: flex; justify-content: space-between; margin: 6px 0; font-size: 14px; }
+        .total { font-weight: bold; font-size: 17px; border-top: 2px solid #ddd; padding-top: 8px; margin-top: 8px; color: #c0392b; }
+        .btn { background: #e67e22; color: white; border: none; padding: 12px; width: 100%; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+        .btn:hover { background: #d35400; }
+        #mensaje-exito { display: none; color: #27ae60; font-weight: bold; margin-top: 15px; font-size: 18px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>🍕 Pizzería Don Peperone</h1>
+    <div class="sub">Sistema de Autogestión de Mesa</div>
+    <div class="mesa-tag" id="titulo-mesa">Mesa --</div>
+    
+    <div class="detalle" id="caja-detalle">
+        <p><span>Pizza Muzzarella Grande</span> <span>$11.500</span></p>
+        <p><span>Pizza Especial (Jamón y Morrones)</span> <span>$14.000</span></p>
+        <p><span>Fainá (2 porciones)</span> <span>$2.500</span></p>
+        <p><span>Cerveza Imperial 1L</span> <span>$4.500</span></p>
+        <p><span>Gaseosa Coca-Cola 1.5L</span> <span>$3.500</span></p>
+        <p class="total"><span>Total a Pagar:</span> <span>$36.000</span></p>
+    </div>
+
+    <button class="btn" id="btn-pagar" onclick="simularPago()">Pagar Cuenta</button>
+    <div id="mensaje-exito">¡Pago realizado con éxito! 🍕🎉<br><span style="font-size: 13px; color: #666; font-weight: normal;">Su pedido ya está en camino a la cocina. ¡Gracias!</span></div>
+</div>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const mesa = urlParams.get('mesa') || 'General';
+    document.getElementById('titulo-mesa').innerText = `Mesa N° ${mesa}`;
+
+    function simularPago() {
+        document.getElementById('caja-detalle').style.display = 'none';
+        document.getElementById('btn-pagar').style.display = 'none';
+        document.getElementById('mensaje-exito').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
